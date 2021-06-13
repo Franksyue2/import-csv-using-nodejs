@@ -19,7 +19,7 @@ router.get('/', function(req, res, next) {
 }).get('/import', function(req, res, next) {
 
     var  products  = []
-    var csvStream = csv()
+    var csvStream = csv
         .on("data", function(data){
          
          var item = new Product({
