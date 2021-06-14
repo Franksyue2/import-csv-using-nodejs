@@ -5,9 +5,9 @@ block content
   h2 Import CSV file
   br
   p
-   a(href='javascript:void(0)' class='btn btn-primary' id='importdata') Import CSV 
-   | &nbsp;&nbsp;&nbsp;
-   a(href='javascript:void(0)' class='btn btn-primary' id='importdata' data-toggle="modal" data-target="#myModal") Import CSV 2
+   //-a(href='javascript:void(0)' class='btn btn-primary' id='importdata') Import CSV 
+   //-| &nbsp;&nbsp;&nbsp;
+   a(href='javascript:void(0)' class='btn btn-primary' id='importdata' data-toggle="modal" data-target="#myModal") Import CSV
    | &nbsp;&nbsp;&nbsp;
    a(href='javascript:void(0)' class='btn btn-primary' id='fetchdata') Fetch Data
   br  
@@ -26,22 +26,19 @@ block content
         tr
             td(colspan='3') Click on <strong>Import CSV</strong> button to import and save data. <br />Click on <strong>Fetch Data</strong> button to display data
 
-  button.btn.btn-primary.btn-sm(type='button', data-toggle="modal" 
-  data-target="#myModal" style='margin-top: 2%') Add Issue
 
   #myModal.modal
-      form(action = "/add", method = "POST")
           .modal-dialog
               .modal-content
                   .modal-header
                       h4.modal-title Upload Welcome Student Data
                           button.close(type='button' data-dismiss="modal") &times;
                   .modal-body
-                          form(method='POST' enctype="multipart/form-data")
-                              div.form-group
-                              input#uploaddata.form-control(type='file', name='uploaddata' )
-                              br
-                              button.btn.btn-primary(type='submit' name='uploaddata') Upload
-                              |&nbsp;&nbsp;&nbsp;
-                              button.btn.btn-danger(type='button' data-dismiss='modal') Close
+                          input#uploaddata.form-control(type='file', name='uploaddata' )
+                          br
+                          div(id='preview')
+                          br
+                          button.btn.btn-primary(type='' name='uploaddata' id='btn_upload') Upload
+                          |&nbsp;&nbsp;&nbsp;
+                          button.btn.btn-danger(type='button' data-dismiss='modal') Close
                           

@@ -21,4 +21,29 @@ $(function(){
         });
     });
 
+    $('#btn_upload').click(function(){
+
+        var fd = new FormData();
+        var files = $('#uploaddata')[0].files[0];
+        console.log(files);
+        fd.append('file',files);
+
+        // AJAX request
+        $.ajax({
+          url: '/add',
+          type: 'post',
+          data: fd,
+          contentType: false,
+          processData: false,
+          success: function(response){
+            if(response != 0){
+              // Show image preview
+              $('#preview').append(response['success']);
+            }else{
+              alert('file not uploaded');
+            }
+          }
+        });
+      });
+
 }); 
