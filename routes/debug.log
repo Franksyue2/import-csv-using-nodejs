@@ -1,11 +1,13 @@
-{"_id":"60c7b4ea8bd5b239db10df79","student_id":"6998","status":"3","application_date":"2023-04-15","__v":0,"course":"BUS1010","department":"Business","api_called":true}
-{"_id":"60c7b4ea8bd5b239db10ddc5","student_id":"2243","status":"4","application_date":"2021-01-19","__v":0,"course":"SCI1010","department":"Arts and Sciences","api_called":true}
-{"_id":"60c7b4e98bd5b239db10c5b5","student_id":"9105","status":"9","application_date":"1976-08-09","__v":0,"course":"BUS1010","department":"Business","api_called":true}
-{"_id":"60c7b4ea8bd5b239db10dd87","student_id":"2005","status":"8","application_date":"2018-11-06","__v":0,"course":"SCI1010","department":"Arts and Sciences","api_called":true}
-{"_id":"60c7b4ea8bd5b239db10d9a2","student_id":"7262","status":"2","application_date":"2072-11-20","__v":0,"course":"BUS1010","department":"Business","api_called":true}
-{"_id":"60c7b4e98bd5b239db10d28e","student_id":"3832","status":"7","application_date":"1983-04-09","__v":0,"course":"BUS1010","department":"Business","api_called":true}
-{"_id":"60c7b4ea8bd5b239db10d49b","student_id":"2472","status":"2","application_date":"2085-07-25","__v":0,"course":"ENG1010","department":"Engineering","api_called":true}
-{"_id":"60c7b4ea8bd5b239db10e58b","student_id":"6081","status":"10","application_date":"2017-05-02","__v":0,"course":"BUS1010","department":"Business","api_called":true}
-{"_id":"60c7b4ea8bd5b239db10db0f","student_id":"10852","status":"10","application_date":"1996-12-11","__v":0,"course":"SCI1010","department":"Arts and Sciences","api_called":true}
-{"_id":"60c7b4e98bd5b239db10c617","student_id":"3526","status":"5","application_date":"2076-07-19","__v":0,"course":"ENG1010","department":"Engineering","api_called":true}
-{"_id":"60c7b4ea8bd5b239db10da2c","student_id":"7525","status":"3","application_date":"1972-04-08","__v":0,"course":"ENG1010","department":"Engineering","api_called":true}
+null
+null
+null
+null
+null
+null
+null
+null
+{"_id":"60c7b4e98bd5b239db10c5b6","student_id":"1225","status":"9","application_date":"2041-06-07","__v":0,"course":"BUS1010","department":"Business","api_called":true}
+{"_id":"60c7b4ea8bd5b239db10d445","student_id":"6179","status":"10","application_date":"1981-05-18","__v":0,"course":"BUS1010","department":"Business","api_called":true}
+{"_id":"60c7b4ea8bd5b239db10d9a7","student_id":"2468","status":"8","application_date":"1977-07-14","__v":0,"course":"ENG1010","department":"Engineering","api_called":true}
+{"_id":"60c7b4ea8bd5b239db10e3b4","student_id":"2108","status":"9","application_date":"1971-10-23","__v":0,"course":"BUS1010","department":"Business","api_called":true}
+{"_id":"60c7b4ea8bd5b239db10dd8a","student_id":"10479","status":"9","application_date":"1988-06-09","__v":0,"course":"SCI1010","department":"Arts and Sciences","api_called":true}
