@@ -11,7 +11,8 @@ console.log = function(d) {
 
 var mongoose = require('mongoose');
 
-var Student  = mongoose.model('Students');
+var Student  = mongoose.model('Student');
+var StreamModel  = mongoose.model('WSStream');
 
 var csvfile = __dirname + "/../public/files/products.csv";
 var stream = fs.createReadStream(csvfile);
@@ -99,9 +100,30 @@ router.post('/add', upload.single('file'), function (req, res) {
                   department: doc['department'],
                   course: course
                 };
+
                 //call api in an async way and update api_called after that
-                log_item['api_called'] = true;
-                console.log(JSON.stringify(log_item));
+                var streamItem = new StreamModel({
+                  stream_type: "abc_type",
+                  stream_key: "abc_key",
+                  stream_data: log_item,
+                  is_processed: false,
+                  createdAt: new Date().toISOString(),
+                  process_timestamp: null,
+                  is_duplicated: false
+                });
+
+                streamItem.save(function(err, streamItem) {
+                  if (err) {
+                    console.log(err);
+                    return res.status(500).json({
+                      message: 'Could not save streamItem'
+                    });
+                  }
+                });
+
+                log_item['api_called'] = false;
+                // console.log(JSON.stringify(log_item));
+                // process.exit();
               } else {
                 if(row[1] == 'Business') {
                   course = 'BUS1010';
@@ -135,7 +157,27 @@ router.post('/add', upload.single('file'), function (req, res) {
                   course: course
                 };
                 //call api in an async way and update api_called after that
-                log_item['api_called'] = true;
+                //call api in an async way and update api_called after that
+                var streamItem = new StreamModel({
+                  stream_type: "abc_type",
+                  stream_key: "abc_key",
+                  stream_data: log_item,
+                  is_processed: false,
+                  createdAt: new Date().toISOString(),
+                  process_timestamp: null,
+                  duplicated: false
+                });
+
+                log_item['api_called'] = false;
+                streamItem.save(function(err, streamItem) {
+                  if (err) {
+                    console.log(err);
+                    return res.status(500).json({
+                      message: 'Could not save streamItem'
+                    });
+                  }
+                });
+
                 console.log(JSON.stringify(log_item));
               }
             } else {
@@ -163,6 +205,79 @@ router.post('/add', upload.single('file'), function (req, res) {
       });
       res.json({success : "Updated Successfully", status : 200, data: fileRows});
     })
+});
+
+
+router.post('/stream/process', function(req, res, next) {
+  var user = req;
+  console.log(user);
+  process.exit();
+  // if (!user) {
+  //   return res.status(401).json({
+  //     message: 'Permission Denied!'
+  //   });
+  // } else if (!user.isEmailVerified) {
+  //   return res.status(401).json({
+  //     message: 'Permission Denied! Please verify your email.'
+  //   });
+  // }
+
+  // console.dir(req.user);
+
+  // var body = req.body;
+  // var title = body.title;
+  // var categories = body.categories;
+  // var postLanguage = body.postLanguage;
+  // var state = body.state;
+  // var university = body.university;
+  // var content = body.content;
+
+  // //simulate error if title, categories and content are all "test"
+  // //This is demo field-validation error upon submission.
+  // if (title === 'test' && categories === 'test' && content === 'test') {
+  //   return res.status(403).json({
+  //     message: {
+  //       title: 'Title Error - Cant use "test" in all fields!',
+  //       categories: 'Categories Error',
+  //       content: 'Content Error',
+  //       submitmessage: 'Final Error near the submit button!'
+  //     }
+  //   });
+  // }
+
+  // if (!title || !categories || !content) {
+  //   return res.status(400).json({
+  //     message: 'Error title, categories and content are all required!'
+  //   });
+  // }
+
+  // var post = new Post({
+  //   title: title,
+  //   categories: categories.split(','),
+  //   university:university,
+  //   state:state,
+  //   postLanguage:postLanguage,
+  //   content: content,
+  //   authorName: req.user.name,
+  //   authorUsername: req.user.username,
+  //   authorId: req.user._id,
+  //   authorImage: req.user.image,
+  //   createDate: new Date().toISOString(),
+  //   updateDate: new Date().toISOString(),
+  //   viewNumber:0,
+  //   files:[],
+  // });
+
+
+  // post.save(function(err, post) {
+  //   if (err) {
+  //     console.log(err);
+  //     return res.status(500).json({
+  //       message: 'Could not save post'
+  //     });
+  //   }
+  //   res.json(post);
+  // });
 });
 
 module.exports = router;

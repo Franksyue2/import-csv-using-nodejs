@@ -17,4 +17,4 @@ var studentSchema = new Schema({
   api_called: { type: Boolean, default: false }
 });
 
-module.exports = mongoose.model('Students', studentSchema);
+module.exports = mongoose.model('Student', studentSchema);
