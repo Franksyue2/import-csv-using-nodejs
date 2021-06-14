@@ -10,8 +10,7 @@ var flash = require('connect-flash');
 
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/dbproducts', { useMongoClient: true });
-require("./models/Product");
+mongoose.connect('mongodb://localhost/dbwelcome', { useMongoClient: true });
 require("./models/Student");
 
 var index = require('./routes/index');

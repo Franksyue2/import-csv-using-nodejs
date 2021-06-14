@@ -11,8 +11,6 @@ console.log = function(d) {
 
 var mongoose = require('mongoose');
 
-var Product  = mongoose.model('Products');
-
 var Student  = mongoose.model('Students');
 
 var csvfile = __dirname + "/../public/files/products.csv";
