@@ -19,7 +19,7 @@ var stream = fs.createReadStream(csvfile);
 
 const multer = require('multer');
 const upload = multer({ dest: 'tmp/csv/' });
-
+const apikey = "6609d774c3fa3fdbe70cf240b2c9c969";
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
@@ -209,75 +209,36 @@ router.post('/add', upload.single('file'), function (req, res) {
 
 
 router.post('/stream/process', function(req, res, next) {
-  var user = req;
-  console.log(user);
-  process.exit();
-  // if (!user) {
-  //   return res.status(401).json({
-  //     message: 'Permission Denied!'
-  //   });
-  // } else if (!user.isEmailVerified) {
-  //   return res.status(401).json({
-  //     message: 'Permission Denied! Please verify your email.'
-  //   });
-  // }
+  var decoded = JSON.parse(Buffer.from(req.body.data, 'base64').toString());     
+  if(req.body.apikey != apikey) {
+      return res.status(500).json({
+          message: 'Could not process streams'
+      });
+  }
 
-  // console.dir(req.user);
+  // make the api call...
+  // make the api call...
+  // make the api call...
+  // make the api call...
+  // make the api call...
 
-  // var body = req.body;
-  // var title = body.title;
-  // var categories = body.categories;
-  // var postLanguage = body.postLanguage;
-  // var state = body.state;
-  // var university = body.university;
-  // var content = body.content;
-
-  // //simulate error if title, categories and content are all "test"
-  // //This is demo field-validation error upon submission.
-  // if (title === 'test' && categories === 'test' && content === 'test') {
-  //   return res.status(403).json({
-  //     message: {
-  //       title: 'Title Error - Cant use "test" in all fields!',
-  //       categories: 'Categories Error',
-  //       content: 'Content Error',
-  //       submitmessage: 'Final Error near the submit button!'
-  //     }
-  //   });
-  // }
-
-  // if (!title || !categories || !content) {
-  //   return res.status(400).json({
-  //     message: 'Error title, categories and content are all required!'
-  //   });
-  // }
-
-  // var post = new Post({
-  //   title: title,
-  //   categories: categories.split(','),
-  //   university:university,
-  //   state:state,
-  //   postLanguage:postLanguage,
-  //   content: content,
-  //   authorName: req.user.name,
-  //   authorUsername: req.user.username,
-  //   authorId: req.user._id,
-  //   authorImage: req.user.image,
-  //   createDate: new Date().toISOString(),
-  //   updateDate: new Date().toISOString(),
-  //   viewNumber:0,
-  //   files:[],
-  // });
-
-
-  // post.save(function(err, post) {
-  //   if (err) {
-  //     console.log(err);
-  //     return res.status(500).json({
-  //       message: 'Could not save post'
-  //     });
-  //   }
-  //   res.json(post);
-  // });
+  Student.findOneAndUpdate(
+    {student_id: decoded.stream_data.student_id, api_called: false},
+    {
+      api_called: true
+    },
+    {new: true},
+    function(err, doc){
+      if (err) {
+        console.log(err);
+        return res.status(500).json({
+          message: 'Could not update student\' api_called'
+        });
+      }
+      console.log(JSON.stringify(doc));
+  });
+  
+  res.json({success : "Updated Successfully", status : 200, data: {"processed": true}});
 });
 
 module.exports = router;

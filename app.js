@@ -8,6 +8,9 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var flash = require('connect-flash');
 
+const http = require('http');
+const WebSocket = require('ws');
+
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/dbwelcome', { useMongoClient: true });
@@ -59,5 +62,12 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+// const server = http.createServer(app);
+// const wss = new WebSocket.Server({ server });
+
+// server.listen(3001, function listening() {
+//   console.log('Listening on %d', server.address().port);
+// });
 
 module.exports = app;
