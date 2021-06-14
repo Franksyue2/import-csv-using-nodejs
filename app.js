@@ -12,6 +12,7 @@ var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/dbproducts', { useMongoClient: true });
 require("./models/Product");
+require("./models/Student");
 
 var index = require('./routes/index');
 var users = require('./routes/users');
