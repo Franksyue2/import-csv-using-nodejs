@@ -1,4 +1,18 @@
 $(function(){
+    $(window).on('load', function () {
+       $('#loading').hide();
+     }) 
+    //Attach the event handler to any element
+    $(document)
+     .ajaxStart(function () {
+        //ajax request went so show the loading image
+         $('#loading').show();
+     })
+    .ajaxStop(function () {
+       //got response so hide the loading image
+        $('#loading').hide();
+    });
+      
     $("#fetchStudentData").on('click', function(){
         $.get( "/fetchStudentdata", function( data ) {
             var students = data['data'];
@@ -11,12 +25,6 @@ $(function(){
             });
             $("#trdata").html('');
             $("#trdata").html(string);
-        });
-    });
- 
-    $("#importdata").on('click', function(){
-        $.get( "/import", function( data ) {
-            $("#message").show().html(data['success']);
         });
     });
 
@@ -36,7 +44,6 @@ $(function(){
           processData: false,
           success: function(response){
             if(response != 0){
-              // Show image preview
               $('#preview').append(response['success']);
             }else{
               alert('file not uploaded');
